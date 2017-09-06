@@ -1,0 +1,15 @@
+version: "2"
+
+services:
+  s3backup-db:
+    image: synst/s3-dockup
+    container_name: s3backup-db
+    hostname: s3backup-db
+    environment:
+      - S3_BUCKET_NAME=druio
+      - AWS_DEFAULT_REGION=eu-west-1
+      - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+    volumes:
+    - "./backup-path:/db"
+    - "./backup.sh:/start.sh"
